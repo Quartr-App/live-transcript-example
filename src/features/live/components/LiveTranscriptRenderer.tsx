@@ -20,7 +20,10 @@ export const LiveTranscriptRenderer = ({
   const [isAutoScrollEnabled, setIsAutoScrollEnabled] = useState(true);
 
   const disableScrolling = useCallback(() => setIsAutoScrollEnabled(false), []);
-  const enableScrolling = useCallback(() => setIsAutoScrollEnabled(true), []);
+  const toggleScrolling = useCallback(
+    () => setIsAutoScrollEnabled((s) => !s),
+    []
+  );
 
   useEffect(() => {
     const scrollToActiveParagraph = (time: number) => {
@@ -68,10 +71,20 @@ export const LiveTranscriptRenderer = ({
     <div className="flex flex-col gap-3 h-full">
       <div className="flex justify-between items-center">
         <div className="text-2xl font-semibold">Quartr Live Transcript</div>
-        <button type="button" onClick={enableScrolling}>
-          Auto scroll {isAutoScrollEnabled ? "on" : "off"}
-        </button>
-        <AudioPlayer audioUrl={audioUrl} />
+        <div className="flex gap-1 items-center">
+          <button
+            className={`${
+              isAutoScrollEnabled
+                ? "bg-blue-600 hover:bg-blue-700"
+                : "bg-neutral-700 hover:bg-neutral-800"
+            } text-white p-1 rounded-md text-sm font-medium transition duration-100`}
+            type="button"
+            onClick={toggleScrolling}
+          >
+            Auto scroll {isAutoScrollEnabled ? "on" : "off"}
+          </button>
+          <AudioPlayer audioUrl={audioUrl} />
+        </div>
       </div>
       <div
         className="h-full flex flex-col gap-3 overflow-y-auto"
