@@ -14,6 +14,6 @@ We prefer using `bun` as a package manager, but any package manager for JavaScri
 2. `bun dev` or `pnpm dev` or `npm run dev`
 3. Open [http://localhost:5173/](http://localhost:5173/)
 
-> ![NOTE]
+> [!NOTE]
 > Features like detecting the start, end and sections in the transcript are not currently
 > implemented in this example.
